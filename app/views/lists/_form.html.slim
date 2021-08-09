@@ -1,0 +1,4 @@
+.form
+  = form_with model: list, local: true do |f|
+    = f.text_field :title, class: "form-control"
+    = f.submit '作成'

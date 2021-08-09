@@ -1,0 +1,20 @@
+h1
+  = @list.title
+
+.words
+  table.table.table-bordered
+    thead.thead-light
+      tr 
+        th 
+          | English 
+        th
+          | Japanese 
+
+    tbody
+      - @words.each do |word|
+        tr
+          td
+            = word.english
+          td 
+            = word.japanese 
+

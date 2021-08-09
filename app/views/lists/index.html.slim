@@ -1,3 +1,18 @@
-h1.text-info
-  | index
-= link_to "link", "#", class: "btn btn-info"
+h1 
+  | リスト
+
+= link_to "new", new_list_path, remote: true, class: "btn btn-info"
+
+.lists
+  - if @lists.present?
+    table.table.table-hover
+      - @lists.each do |list|
+        tr id="list-#{list.id}"
+          td 
+            = link_to list.title, list_path(list)
+          td
+            = list.words.count 
+            | words
+  - else
+    p 
+    | リストがありません
