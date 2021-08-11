@@ -1,0 +1,12 @@
+.container
+  .row id="word-#{word.id}"
+    .col-2.border.border-top-0.border-right-0
+      = word.is_remembered
+    .col-5.border.border-top-0
+      = word.english
+      span.d-inlile-block.float-right
+        = link_to "", edit_list_word_path(list, word), remote: true, class: "far fa-edit text-light"
+    .col-5.border.border-top-0.border-left-0
+      = word.japanese 
+      span.d-inlile-block.float-right
+          = link_to "", edit_list_word_path(list, word), remote: true, class: "far fa-edit text-light"

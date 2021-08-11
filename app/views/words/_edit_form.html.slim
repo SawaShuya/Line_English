@@ -1,0 +1,13 @@
+= form_with model: [list, word], remote: true, class: "d-inline-block w-100" do |f|
+  .container
+    .row
+      .col-2.border.border-top-0.border-right-0
+        = link_to "戻る", list_path(list), class: "text-danger"
+        = f.submit "保存"
+        
+      .col-5.border.border-top-0    
+        = f.text_field :english
+
+      .col-5.border.border-top-0.border-left-0
+        = f.text_field :japanese
+    

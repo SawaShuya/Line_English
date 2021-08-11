@@ -6,7 +6,7 @@ class ListsController < ApplicationController
   end
 
   def index
-    @lists = current_user.lists
+    @lists = current_user.lists.order(id: "ASC")
   end
 
   def create
@@ -17,7 +17,7 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    @words = @list.words
+    @words = @list.words.order(id: "ASC")
   end
 
   private
