@@ -1,5 +1,6 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_list, only: [:show]
 
   def new
     @list = List.new
@@ -16,13 +17,22 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.find(params[:id])
     @words = @list.words.order(id: "ASC")
   end
 
   private
   def list_params
     params.require(:list).permit(:title)
+  end
+
+  def set_list
+    @list = List.find(params[:id])
+  end
+
+  def check_user
+    unless @list.user == current_user
+      redirect_back(fallback_location: root_path)
+    end
   end
 
 end

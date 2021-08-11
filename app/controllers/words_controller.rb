@@ -1,7 +1,9 @@
 class WordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_list, only: [:new, :create, :edit, :update]
+  before_action :check_user, only: [:new]
   before_action :set_word, only: [:edit, :update, :destroy]
+
 
   def new
     @form = Form::WordCollection.new
@@ -45,5 +47,9 @@ class WordsController < ApplicationController
     @word = Word.find(params[:id])
   end
 
-
+  def check_user
+    unless @list.user == current_user
+      redirect_back(fallback_location: root_path)
+    end
+  end
 end
