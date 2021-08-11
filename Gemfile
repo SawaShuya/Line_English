@@ -61,3 +61,6 @@ gem 'html2slim'
 gem 'devise'
 
 gem 'font-awesome-sass', '~> 5.13'
+gem 'omniauth'
+gem 'omniauth-line'
+gem 'dotenv-rails'

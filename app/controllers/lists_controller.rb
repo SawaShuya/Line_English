@@ -1,17 +1,18 @@
 class ListsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @list = List.new
   end
 
   def index
-    @lists = List.all
+    @lists = current_user.lists
   end
 
   def create
-    @list = List.new(list_params)
+    @list = current_user.lists.new(list_params)
     @list.save
-    redirect_to root_path
+    redirect_to lists_path
   end
 
   def show

@@ -1,0 +1,6 @@
+h1 
+  | トップページ
+
+= link_to "Log in", new_user_session_path, class: 'btn btn-info'
+
+= link_to "LINE Login", user_line_omniauth_authorize_path, method: :post

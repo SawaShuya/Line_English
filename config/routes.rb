@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users, controllers: {
+    omniauth_callbacks: "omniauth_callbacks"
+  }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root "lists#index"
-  resources :lists, only: [:new, :show, :create, :destroy, :update]
-  resources :words, only: [:create, :update]
+  root "homes#top"
+  resources :lists, only: [:new, :index, :show, :create, :destroy, :update] do 
+    resources :words, only: [:new, :create, :update, :destroy]
+  end
 end

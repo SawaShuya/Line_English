@@ -1,10 +1,14 @@
 h1
   = @list.title
 
+.links
+  = link_to "new words", new_list_word_path(@list), class: "btn btn-info"
+  = link_to "リスト一覧へ" , lists_path
 .words
   table.table.table-bordered
     thead.thead-light
-      tr 
+      tr
+        th
         th 
           | English 
         th
@@ -13,6 +17,8 @@ h1
     tbody
       - @words.each do |word|
         tr
+          td
+            = word.is_remembered
           td
             = word.english
           td 

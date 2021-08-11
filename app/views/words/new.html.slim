@@ -1,0 +1,10 @@
+h1 
+  | New Words 
+
+.form
+  = form_with model: [@list, @form], url: list_words_path, local: true do |form|
+    = form.fields_for :words do |f|    
+      = f.text_field :english
+      = f.text_field :japanese
+      br
+    = form.submit "登録"
