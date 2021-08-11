@@ -24,6 +24,8 @@ class WordsController < ApplicationController
   end
 
   def destroy
+    @word_id = @word.id
+    @word.destroy
   end
 
   private
