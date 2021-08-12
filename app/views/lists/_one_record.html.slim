@@ -1,0 +1,12 @@
+.row id="list-#{list.id}"
+  .col-6
+    = link_to list.title, list_path(list)
+  .col-3
+    = list.words.count.to_s + " words"
+  .col-3
+    a.dropdown-toggle data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
+      span.btn.btn-sm.btn-outline-secondary
+        i.fas.fa-ellipsis-h
+    .dropdown-menu
+      = link_to "編集", edit_list_path(list), remote: true, class: "dropdown-item text-decoration-none"
+      = link_to "削除", list_path(list), method: :delete, remote: true, class: "text-decoration-none dropdown-item", data:{confirm: "「#{list.title}」に登録した情報がすべて削除されます。削除してよろしいですか？"}

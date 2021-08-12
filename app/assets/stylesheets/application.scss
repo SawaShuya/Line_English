@@ -16,5 +16,9 @@
 
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
- 
- 
+
+ .lists {
+  .dropdown-toggle::after {
+    display: none;
+  }
+ }

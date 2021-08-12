@@ -1,23 +1,34 @@
 class ListsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_list, only: [:show]
+  before_action :set_list, only: [:show, :edit, :update, :destroy]
 
   def new
     @list = List.new
   end
 
   def index
-    @lists = current_user.lists.order(id: "ASC")
+    @lists = current_user.lists.order(updated_at: "DESC")
   end
 
   def create
     @list = current_user.lists.new(list_params)
     @list.save
-    redirect_to lists_path
   end
 
   def show
     @words = @list.words.order(id: "ASC")
+  end
+
+  def edit
+  end
+
+  def update
+    @list.update(list_params)
+  end
+
+  def destroy
+    @list_id = @list.id
+    @list.destroy
   end
 
   private

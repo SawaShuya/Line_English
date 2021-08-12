@@ -1,0 +1,13 @@
+= form_with model: list, class: "w-100", remote: true do |f|
+  .container
+    .row
+      .col-6
+        = f.text_field :title, class: "form-control"
+      .col-3 
+        = list.words.count.to_s + " words"
+      .col-3.d-flex.justify-content-around
+        = f.button :type => "submit", style: 'border-style: none;' do
+          i.fas.fa-check.text-success
+
+        = link_to "", list_path(list), method: :delete, remote: true, class: "text-danger text-decoration-none far fa-trash-alt", data:{confirm: "「#{list.title}」に登録した情報がすべて削除されます削除してよろしいですか？"}
+      
