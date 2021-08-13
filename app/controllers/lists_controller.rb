@@ -7,12 +7,15 @@ class ListsController < ApplicationController
   end
 
   def index
-    @lists = current_user.lists.order(updated_at: "DESC")
+    @lists = current_user.lists.sort{|a, b| b.last_update <=> a.last_update}
   end
 
   def create
     @list = current_user.lists.new(list_params)
-    @list.save
+    unless @list.save
+      render :new
+    end
+
   end
 
   def show
@@ -23,7 +26,11 @@ class ListsController < ApplicationController
   end
 
   def update
-    @list.update(list_params)
+    if @list.title == params[:list][:title] 
+      @list.touch
+    else
+      @list.update(list_params)
+    end
   end
 
   def destroy

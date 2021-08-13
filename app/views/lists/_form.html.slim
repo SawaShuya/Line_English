@@ -1,4 +1,4 @@
 .form
-  = form_with model: list, remote: true do |f|
+  = form_with model: list, remote: true, class: "input-group" do |f|
     = f.text_field :title, class: "form-control"
-    = f.submit '作成'
+    = f.submit '作成', class: "input-group-append btn btn-success"

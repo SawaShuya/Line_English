@@ -1,12 +1,12 @@
 h1 
   | リスト
 
-= link_to "new", new_list_path, remote: true, class: "btn btn-info"
+= link_to "new", new_list_path, remote: true, class: "btn btn-info new-list-btn"
 
 .lists
   - if @lists.present?
     - @lists.each do |list|
-      .row id="list-#{list.id}"
+      .row.border-bottom.item id="list-#{list.id}"
         .col-6
           = link_to list.title, list_path(list)
         .col-3
