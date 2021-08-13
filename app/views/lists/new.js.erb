@@ -1,2 +1,4 @@
-$(".lists").before("<%= j(render 'form', list: @list)%>")
-$(".new-list-btn").remove()
+$(".lists").before("<%= j(render 'form', list: @list)%>");
+$(".form").slideDown('fast');
+$(".new-list-btn").css('display', 'none')
+$(".back-btn").fadeIn();

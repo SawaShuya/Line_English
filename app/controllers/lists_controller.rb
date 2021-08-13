@@ -12,10 +12,7 @@ class ListsController < ApplicationController
 
   def create
     @list = current_user.lists.new(list_params)
-    unless @list.save
-      render :new
-    end
-
+    @list.save
   end
 
   def show
@@ -26,7 +23,7 @@ class ListsController < ApplicationController
   end
 
   def update
-    if @list.title == params[:list][:title] 
+    if @list.title == params[:list][:title]
       @list.touch
     else
       @list.update(list_params)

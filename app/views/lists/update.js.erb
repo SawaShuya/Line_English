@@ -1,2 +1,7 @@
-$("#list-<%= @list.id %>").remove()
-$(".lists").prepend("<%= j(render 'one_record', list: @list) %>")
+<% if @list.errors.any? %>
+  $("#list-<%= @list.id %>").html("<%= j(render 'edit_form', list: @list) %>")
+  $("#list_title").addClass("is-invalid")
+<% else %>
+  $("#list-<%= @list.id %>").remove()
+  $(".lists").prepend("<%= j(render 'one_record', list: @list) %>")
+<% end %>

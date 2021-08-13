@@ -1,2 +1,11 @@
-$(".form").remove()
-$(".lists").prepend("<%= j(render 'one_record', list: @list) %>")
+<% if @list.errors.any? %>
+  $("<%= j(render 'form', list: @list)%>").replaceAll(".form")
+  $(".form").css('display', 'block')
+  $("#list_title").unwrap()
+  $("#list_title").addClass("is-invalid")
+<% else %>
+  $(".form").fadeOut().remove();
+  $(".lists").prepend("<%= j(render 'one_record', list: @list) %>")
+  $(".back-btn").css('display', 'none');
+  $(".new-list-btn").fadeIn();
+<% end %>

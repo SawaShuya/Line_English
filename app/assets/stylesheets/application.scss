@@ -17,6 +17,9 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+ main {
+   padding: 30px 0;
+ }
  .lists {
   .dropdown-toggle::after {
     display: none;
@@ -25,4 +28,42 @@
 
  .item {
    height: 60px;
+   line-height: 60px;
+   .dropdown-item {
+    height: 40px;
+    line-height: 40px;
+   }
+ }
+ .item:hover {
+  background-color: #e6e6fa;
+  font-weight: 600;
+ }
+
+
+.edit-form {
+  button:focus, button:hover  {
+    outline:0;
+    color: #006400;
+ }
+}
+.edit-form:hover {
+  background-color: #ffffff;
+  font-weight: 400;
+  border-bottom: 1px solid #dee2e6;
+ }
+
+ .submit-link {
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  line-height: normal;
+  color: #28a745;
+ }
+
+ .new-list-btn, .back-btn {
+   font-size: 1.5rem;
+ }
+
+ .form, .back-btn {
+   display: none;
  }

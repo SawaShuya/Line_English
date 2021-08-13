@@ -16,3 +16,15 @@ import 'bootstrap';
 import '../stylesheets/application';
 
 window.$ = jQuery;
+
+$(document).on('turbolinks:load', function() {
+  $(function() {
+    $(".back-btn").on('click', function() {
+      $(".form").slideUp('fast', function() {
+        $(this).remove();
+      });
+      $(".back-btn").css('display', 'none');
+      $(".new-list-btn").fadeIn();
+    })
+  })
+})

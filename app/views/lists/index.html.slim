@@ -1,23 +1,27 @@
-h1 
-  | リスト
-
-= link_to "new", new_list_path, remote: true, class: "btn btn-info new-list-btn"
+.title.mb-4
+  h3.d-inline
+    | Myリスト
+  .form-display-links.d-inline
+    = link_to "", new_list_path, remote: true, class: "new-list-btn text-decoration-none ml-5 fas fa-plus-circle"
+    = link_to "", "#", remote: true, class: "back-btn text-decoration-none ml-5 fas fa-times"
 
 .lists
   - if @lists.present?
     - @lists.each do |list|
-      .row.border-bottom.item id="list-#{list.id}"
-        .col-6
-          = link_to list.title, list_path(list)
-        .col-3
-          = list.words.count.to_s + " words"
+      .row.border-bottom.border-top.item id="list-#{list.id}"
+        = link_to list_path(list), class: "col-9 text-decoration-none text-dark" do
+          .row
+            .col-6
+              = list.title
+            .col-6
+              = list.words.count.to_s + " words"
         .col-3
           a.dropdown-toggle data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"
             span.btn.btn-sm.btn-outline-secondary
               i.fas.fa-ellipsis-h
           .dropdown-menu
             = link_to "編集", edit_list_path(list), remote: true, class: "dropdown-item text-decoration-none"
-            = link_to "削除", list_path(list), method: :delete, remote: true, class: "text-decoration-none dropdown-item", data:{confirm: "「#{list.title}」に登録した情報がすべて削除されます削除してよろしいですか？"}
+            = link_to "削除", list_path(list), method: :delete, remote: true, class: "text-danger text-decoration-none dropdown-item", data:{confirm: "「#{list.title}」に登録した情報がすべて削除されます削除してよろしいですか？"}
   - else
     p 
     | リストがありません
