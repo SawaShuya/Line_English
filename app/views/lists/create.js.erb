@@ -5,7 +5,16 @@
   $("#list_title").addClass("is-invalid")
 <% else %>
   $(".form").fadeOut().remove();
-  $(".lists").prepend("<%= j(render 'one_record', list: @list) %>")
+  $(".lists").prepend("<%= j(render 'one_record', list: @list) %>");
+  $("#list-<%= @list.id %>").css('transition', 'background-color 1s');
+  $("#list-<%= @list.id %>").addClass('highlight');
   $(".back-btn").css('display', 'none');
   $(".new-list-btn").fadeIn();
+
+  setTimeout(function() {
+		$("#list-<%= @list.id %>").removeClass('highlight');
+	}, 50);
+  setTimeout(function() {
+		$("#list-<%= @list.id %>").css('transition', 'background-color 0s');
+	}, 1000);
 <% end %>

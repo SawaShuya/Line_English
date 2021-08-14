@@ -4,4 +4,14 @@
 <% else %>
   $("#list-<%= @list.id %>").remove()
   $(".lists").prepend("<%= j(render 'one_record', list: @list) %>")
+  $("#list-<%= @list.id %>").css('transition', 'background-color 1s');
+  $("#list-<%= @list.id %>").addClass('highlight');
+
+  setTimeout(function() {
+		$("#list-<%= @list.id %>").removeClass('highlight');
+	}, 50);
+  setTimeout(function() {
+		$("#list-<%= @list.id %>").css('transition', 'background-color 0s');
+	}, 1000);
+
 <% end %>

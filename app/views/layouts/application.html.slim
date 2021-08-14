@@ -14,9 +14,10 @@ html
       .container
         = link_to "Line English", lists_path, class: "navbar-brand"
 
-        ul.navbar-nav
-          li.nav-item
-            = link_to " 設定", "#", class: "nav-link fas fa-cog"
+        - if user_signed_in?
+          ul.navbar-nav
+            li.nav-item
+              = link_to " 設定", "#", class: "nav-link fas fa-cog"
 
     main
       .container

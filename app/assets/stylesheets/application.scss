@@ -28,15 +28,20 @@
 
  .item {
    height: 60px;
-   line-height: 60px;
+   line-height: 60px; 
    .dropdown-item {
     height: 40px;
     line-height: 40px;
    }
  }
  .item:hover {
-  background-color: #e6e6fa;
+  background-color: #f0ffff;
   font-weight: 600;
+ }
+
+ .highlight {
+  background-color: #ffc0cb;
+	transition-duration: 0s;
  }
 
 
