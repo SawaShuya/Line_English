@@ -1,11 +1,22 @@
-h1 
-  | New Words 
+.new-words
+  .title.mb-4
+    h3.d-inline-block
+      | 新規単語登録
 
-.form
-  = form_with model: [@list, @form], url: list_words_path, local: true do |form|
-    = form.fields_for :words do |f|    
-      = f.text_field :english
-      = f.text_field :japanese
-      br
-    = form.submit "登録"
-= link_to "戻る", list_path(@list)
+    = link_to " 戻る", list_path(@list), class: "d-inline-block float-right fas fa-reply text-decoration-none"
+
+  .new-words-form
+    .d-flex.align-items-center.text-center.font-weight-bold.bg-light style="height: 45px;"
+      .d-block.flex-fill.border-right.w-50
+        span
+          | 英単語
+      .d-block.flex-fill.w-50
+        span
+          | 日本語訳
+    = form_with model: [@list, @form], url: list_words_path, local: true do |form|
+      = form.fields_for :words do |f|
+        .form-inline
+          = f.text_field :english, class: "form-control word-form flex-fill"
+          = f.text_field :japanese, class: "form-control word-form flex-fill"
+
+      = form.submit "登録", class: "btn btn-success btn-block"

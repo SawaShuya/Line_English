@@ -72,3 +72,18 @@
  .form, .back-btn {
    display: none;
  }
+
+ .new-words {
+   width: 65%;
+   margin: 0 auto;
+ }
+
+ @media screen and (max-width: 425px) {
+  .word-form {
+    width: 50% !important;
+  }
+
+  .new-words {
+    width: 100%;
+  }
+}
