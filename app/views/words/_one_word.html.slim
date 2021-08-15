@@ -1,7 +1,7 @@
 .container
-  .row id="word-#{word.id}"
-    .col-2.border.border-top-0.border-right-0
-      = word.is_remembered
+  .row.word id="word-#{word.id}"
+    .col-2.border.border-top-0.border-right-0.text-center
+      = check_box(word, :is_remembered)
     .col-5.border.border-top-0
       = word.english
       span.d-inlile-block.float-right

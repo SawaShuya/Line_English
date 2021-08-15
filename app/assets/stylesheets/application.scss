@@ -20,6 +20,10 @@
  main {
    padding: 30px 0;
  }
+
+ a {
+   text-decoration: none;
+ }
  .lists {
   .dropdown-toggle::after {
     display: none;
@@ -27,7 +31,7 @@
  }
 
  .item {
-   height: 60px;
+   min-height: 60px;
    line-height: 60px; 
    .dropdown-item {
     height: 40px;
@@ -63,6 +67,7 @@
   text-decoration: underline;
   line-height: normal;
   color: #28a745;
+  padding: 0;
  }
 
  .new-list-btn, .back-btn {
@@ -77,13 +82,43 @@
    width: 65%;
    margin: 0 auto;
  }
+ .words {
+  width: 80%;
+  margin: 0 auto;
+
+  button:focus, button:hover  {
+    outline:0;
+    color: #006400;
+  }
+ }
+
+ .word {
+   min-height: 45px;
+   line-height: 45px;
+ }
 
  @media screen and (max-width: 425px) {
   .word-form {
     width: 50% !important;
   }
 
-  .new-words {
+  .new-words, .words {
     width: 100%;
+  }
+
+  .edit-word-form {
+    .col-2 {
+      padding: 0;
+      text-align: center;
+    }
+    .submit-link {
+      margin-right: 5px;
+    }
+    .back-link {
+      display: none
+    }
+    .destroy-link {
+      margin-right: 0;
+    }
   }
 }

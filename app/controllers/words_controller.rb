@@ -2,7 +2,7 @@ class WordsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_list, only: [:new, :create, :edit, :update]
   before_action :check_user, only: [:new]
-  before_action :set_word, only: [:edit, :update, :destroy]
+  before_action :set_word, only: [:edit, :update, :update_status, :destroy]
 
 
   def new
@@ -23,6 +23,14 @@ class WordsController < ApplicationController
 
   def update
     @word.update(word_params)
+  end
+
+  def update_status
+    if @word.is_remembered
+      @word.update(is_remembered: false)
+    else
+      @word.update(is_remembered: true)
+    end
   end
 
   def destroy

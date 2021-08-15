@@ -28,3 +28,19 @@ $(document).on('turbolinks:load', function() {
     })
   })
 })
+
+$(document).on('turbolinks:load', function() {
+  $(function(){
+    $('input[class*="word-checkbox"]').change(function(){
+      var word_id = $(this).attr('name'); //チェックボックスのname属性
+      $.ajax({ //ajax通信
+        url: '/word/update_status', 
+        type: 'PATCH',
+        data: {
+          id: word_id  //prams[:id] に格納
+        },
+        dataType: 'json' //データはjson形式
+      });
+    });
+  });
+});

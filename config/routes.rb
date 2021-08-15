@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :lists do 
     resources :words, only: [:new, :create, :edit, :update, :destroy]
   end
+  patch "word/update_status" => "words#update_status", as: "update_status"
 end

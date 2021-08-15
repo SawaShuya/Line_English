@@ -1,27 +1,29 @@
-h3
-  = @list.title
+.words
+  .title.mb-4
+    h3.d-inline-block
+      = @list.title
 
-.links
-  = link_to "new words", new_list_word_path(@list), class: "btn btn-info"
-  = link_to "リスト一覧へ" , lists_path
-.container.words
-  .row
-    .col-2.border.border-right-0
-    .col-5.border
-      | English 
-    .col-5.border.border-left-0
-      | Japanese 
+    .links.d-inline
+      = link_to " 単語登録", new_list_word_path(@list), class: "fas fa-pen-nib text-decoration-none float-right text-success"
+      
+  .container
+    .row.word.font-weight-bold.bg-light
+      .col-2.border.border-right-0
+      .col-5.border
+        | English 
+      .col-5.border.border-left-0
+        | 日本語訳
 
-  - @words.each do |word|
-    .row id="word-#{word.id}"
-      .col-2.border.border-top-0.border-right-0
-        = word.is_remembered
-      .col-5.border.border-top-0
-        = word.english
-        span.d-inlile-block.float-right
-          = link_to "", edit_list_word_path(@list, word), remote: true, class: "far fa-edit text-light"
-      .col-5.border.border-top-0.border-left-0
-        = word.japanese 
-        span.d-inlile-block.float-right
-          = link_to "", edit_list_word_path(@list, word), remote: true, class: "far fa-edit text-light"
+    - @words.each do |word|
+      .row.word id="word-#{word.id}"
+        .col-2.border.border-top-0.border-right-0.text-center
+          = check_box(word, :is_remembered, class: "word-checkbox", name: word.id, checked: word.is_remembered)
+        .col-5.border.border-top-0
+          = word.english
+          span.d-inlile-block.float-right
+            = link_to "", edit_list_word_path(@list, word), remote: true, class: "far fa-edit text-light"
+        .col-5.border.border-top-0.border-left-0
+          = word.japanese 
+          span.d-inlile-block.float-right
+            = link_to "", edit_list_word_path(@list, word), remote: true, class: "far fa-edit text-light"
 
