@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :lists, dependent: :destroy
 
   has_many :social_profiles, dependent: :destroy
-  
+
   def social_profile(provider)
     social_profiles.select{ |sp| sp.provider == provider.to_s }.first
   end
@@ -27,5 +27,13 @@ class User < ApplicationRecord
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
+  end
+
+  def list_index
+    response = "〇登録リスト"
+    lists.each do |list|
+      response = response + "\n" + list.title
+    end
+    return response
   end
 end
