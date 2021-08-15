@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root "homes#top"
+  get "line_english/config" => "homes#app_config", as: "app_config"
   resources :lists do 
     resources :words, only: [:new, :create, :edit, :update, :destroy]
   end
