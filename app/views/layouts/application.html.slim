@@ -13,15 +13,13 @@ html
     header.navbar.navbar-expand-lg.navbar-light.bg-light
       .container
         = link_to "Line English", lists_path, class: "navbar-brand"
-
-        .navbar.navbar-expand-sm
-          .collapse.navbar-collapse id="navbarSupportedContent"
-            - if user_signed_in?
-              ul.navbar-nav.ml-auto
-                li.nav-item
-                  = link_to " Myリスト" , lists_path, class: "nav-link fas fa-list"
-                li.nav-item
-                  = link_to " 設定", app_config_path, class: "nav-link fas fa-cog"
+        
+        - if user_signed_in?
+          ul.nav.d-flex.justify-content-end
+            li.nav-item
+              = link_to " Myリスト" , lists_path, class: "nav-link fas fa-list"
+            li.nav-item
+              = link_to " 設定", app_config_path, class: "nav-link fas fa-cog"
 
     main
       .container

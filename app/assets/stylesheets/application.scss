@@ -24,6 +24,12 @@
  a {
    text-decoration: none;
  }
+
+ header {
+  .nav-link {
+    color: #808080;
+  }
+}
  .lists {
   .dropdown-toggle::after {
     display: none;
@@ -78,7 +84,7 @@
    display: none;
  }
 
- .new-words {
+ .new-words, .user_config {
    width: 65%;
    margin: 0 auto;
  }
@@ -98,11 +104,16 @@
  }
 
  @media screen and (max-width: 425px) {
+   header {
+     .nav-link {
+       padding: 5px;
+     }
+   }
   .word-form {
     width: 50% !important;
   }
 
-  .new-words, .words {
+  .new-words, .words, .user_config {
     width: 100%;
   }
 

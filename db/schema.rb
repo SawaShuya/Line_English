@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_09_091141) do
+ActiveRecord::Schema.define(version: 2021_08_16_053951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 2021_08_09_091141) do
   create_table "lists", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "word_id", null: false
+    t.integer "answer", null: false
+    t.boolean "is_collected", default: false, null: false
+    t.boolean "is_sent", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -33,8 +43,19 @@ ActiveRecord::Schema.define(version: 2021_08_09_091141) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "question_list_id"
+    t.integer "question_limit", default: 5
+    t.boolean "is_remember_word_question", default: true
+    t.boolean "is_question", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "word_dictionaries", force: :cascade do |t|
+    t.string "english"
+    t.string "japanese"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "words", force: :cascade do |t|

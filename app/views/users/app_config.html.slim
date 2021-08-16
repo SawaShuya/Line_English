@@ -1,0 +1,44 @@
+.user_config
+  .title.mb-4
+    h3
+      | 設定
+
+  .configs.border-top
+    .config_content.p-4.border-bottom
+      = form_with model: @user do |f|
+        h4
+          | テスト設定
+        .form-group
+          = f.label "リスト"
+          = f.collection_select :question_list_id, @user.lists, :id, :title, {}, {class: "form-control"}
+        .form-group
+          = f.label "出題数"
+          = f.select :question_limit, {"5問": 5, "10問": 10, "15問": 15}, {}, class: "form-control" 
+        .form-group
+          = f.label "出題範囲"
+          .container
+            .row 
+              .col-7.offset-1
+                = f.radio_button :is_remember_word_question, true, class: "form-check-input"
+                = f.label "チェック項目以外", class: "form-check-label"
+              .col-4
+                = f.radio_button :is_remember_word_question, false,class: "form-check-input"
+                = f.label "すべて", class: "form-check-label"
+        .form-group
+          = f.label "毎朝テスト"
+          .container
+            .row 
+              .col-7.offset-1       
+                = f.radio_button :is_question, true, class: "form-check-input"
+                label.form-check-label
+                  | ON
+              .col-4
+                = f.radio_button :is_question, false,class: "form-check-input"
+                label.form-check-label
+                  | OFF
+        .action 
+          = f.submit "更新", class: "btn btn-outline-info"
+
+        
+    .config_content.p-4.border-bottom
+      = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-danger"

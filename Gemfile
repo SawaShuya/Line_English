@@ -65,3 +65,5 @@ gem 'omniauth', '~> 1.9.1'
 gem 'omniauth-line'
 gem 'dotenv-rails'
 gem 'line-bot-api'
+
+gem 'open-uri'
