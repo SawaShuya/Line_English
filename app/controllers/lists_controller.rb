@@ -13,6 +13,9 @@ class ListsController < ApplicationController
   def create
     @list = current_user.lists.new(list_params)
     @list.save
+    if current_user.question_list_id.nil?
+      current_user.question_list_id == @list.id
+    end
   end
 
   def show
@@ -33,6 +36,9 @@ class ListsController < ApplicationController
   def destroy
     @list_id = @list.id
     @list.destroy
+    if @list_id == current_user.question_list_id
+      current_user.update(question_list_id: nil)
+    end
   end
 
   private

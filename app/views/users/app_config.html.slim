@@ -5,12 +5,15 @@
 
   .configs.border-top
     .config_content.p-4.border-bottom
+      = link_to "使い方", "#"
+
+    .config_content.p-4.border-bottom
       = form_with model: @user do |f|
         h4
           | テスト設定
         .form-group
           = f.label "リスト"
-          = f.collection_select :question_list_id, @user.lists, :id, :title, {}, {class: "form-control"}
+          = f.collection_select :question_list_id, @user.lists, :id, :title, {prompt: "選択してください"}, {class: "form-control"}
         .form-group
           = f.label "出題数"
           = f.select :question_limit, {"5問": 5, "10問": 10, "15問": 15}, {}, class: "form-control" 

@@ -38,15 +38,14 @@ class User < ApplicationRecord
     return response
   end
 
-  def set_questions(list_id, limit, remember)
-    self.result_message
+  def set_questions
     self.questions.destroy_all
 
-    list = List.find(list_id)
-    if remember
-      words = list.words.where(is_remembered: false).sample(limit)
+    list = List.find(self.question_list_id)
+    if self.is_remember_word_question
+      words = list.words.where(is_remembered: false).sample(self.question_limit)
     else
-      words = list.all.sample(limit)
+      words = list.words.sample(self.question_limit)
     end
 
     words.each do |word|
@@ -57,27 +56,36 @@ class User < ApplicationRecord
     
   end
 
+  def check_answer(number)
+    question = self.questions.where(is_sent: true).last
+    if question.answer == number.to_i
+      question.update(is_collected: true)
+    end
+  end
+
   def result_message
     questions = self.questions.where(is_sent: true)
     if questions.present?
       @collect_count = 0
-      response = "〇結果と解答！"
+      response = "結果と解答！"
 
       questions.each do |question|
         if question.is_collected
-          mark = "〇 "
+          mark = "〇  "
           @collect_count += 1
         else
-          mark = "× "
+          mark = "×  "
         end
-        text = mark + question.english + " → " + question.japanese 
+        text = mark + question.word.english + " → " + question.word.japanese 
         response = response + "\n" + text
       end
 
-      response = response + "\n" + @collect_count.to_s + " / " + questions.count.to_s + "正答！"
+      response = response + "\n" + @collect_count.to_s + " / " + questions.count.to_s + "正解！"
       if @collect_count == questions.count
-        response = response + "\n全問正解だね！いい感じ"
+        response = response + "\n全問正解だね！いい感じ！"
       end
+
+      self.questions.destroy_all
 
       return response
     end
@@ -88,17 +96,21 @@ class User < ApplicationRecord
     question_num = self.questions.where(is_sent: true).count + 1
     word_dictionaries = WordDictionary.all.sample(3)
     response = "No. " + question_num.to_s + "  " + question.word.english
-
+    if question_num == 1
+      response = "テストを始めるよ！\n数字を答えてね！\n" + response
+    end
+    
+    j = 0
     for i in 1..4 do
-      j = 0
       if i == question.answer
         response = response + "\n" + i.to_s + ". " + question.word.japanese
       else
-        response = response + "\n" + i.to_s + ". " + word_dictionaries[j]
+        response = response + "\n" + i.to_s + ". " + word_dictionaries[j].japanese
         j += 1
       end
     end
-
+    
+    question.update(is_sent: true)
     return response
   end
 end

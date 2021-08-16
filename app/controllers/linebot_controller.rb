@@ -26,13 +26,43 @@ class LinebotController < ApplicationController
 
      events.each { |event|
       if event.message['text'] != nil
-        if event.message['text'] == "テスト"
-          response = "「" + event.message['text'] + "」は準備中です.. \n ゴメンネ！"
-        elsif event.message['text'] = "リスト"
-          user = User.find_by(uid: event['source']['userId'])
-          response = user.list_index
+        user = User.find_by(uid: event['source']['userId'])
+        user_message = event.message['text']
+
+        case user_message.to_i
+        when 1..4 
+          if user.questions.exists?
+            if user.questions.where(is_sent: false).exists?
+              user.check_answer(user_message)
+              response = user.send_question
+            else
+              user.check_answer(user_message)
+              response = user.result_message
+            end
+          else
+            response = "「" + user_message + "」は読み込めませんでした... \n ゴメン！"
+          end
         else
-          response = "「" + event.message['text'] + "」は読み込めませんでした... \n ゴメンネ！"
+          if user_message == "テスト"
+            if user.question_list_id.present?
+              user.set_questions
+              response = user.send_question
+            else
+              response = "設定からリストを選択してね！"
+            end
+
+          elsif user_message == "やめる"
+            if user.questions.exists?
+              response = user.result_message
+            else
+              response = "テストをしたいときは「テスト」と入力してね！"
+            end
+
+          elsif user_message == "リスト"
+            response = user.list_index
+          else
+            response = "「" + user_message + "」は読み込めませんでした... \n ゴメンネ！"
+          end
         end
       end
 

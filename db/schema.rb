@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_08_16_053951) do
     t.integer "word_id", null: false
     t.integer "answer", null: false
     t.boolean "is_collected", default: false, null: false
-    t.boolean "is_sent", default: true, null: false
+    t.boolean "is_sent", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

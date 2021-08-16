@@ -5,7 +5,7 @@ class CreateQuestions < ActiveRecord::Migration[6.1]
       t.integer :word_id, null: false
       t.integer :answer, null: false
       t.boolean :is_collected, null: false, default: false
-      t.boolean :is_sent, null: false, default: true
+      t.boolean :is_sent, null: false, default: false
 
       t.timestamps
     end
