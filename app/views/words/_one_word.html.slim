@@ -1,12 +1,12 @@
 .container
   .row.word id="word-#{word.id}"
-    .col-2.border.border-top-0.border-right-0.text-center
-      = check_box(word, :is_remembered)
-    .col-5.border.border-top-0
+    .col-2.border.border-top-0.border-right-0.d-flex.align-items-center.justify-content-center.updated
+      = check_box(word, :is_remembered, class: "word-checkbox", name: word.id, checked: word.is_remembered)
+    .col-5.border.border-top-0.d-flex.align-items-center.justify-content-between
       = word.english
-      span.d-inlile-block.float-right
+      span
         = link_to "", edit_list_word_path(list, word), remote: true, class: "far fa-edit text-light"
-    .col-5.border.border-top-0.border-left-0
+    .col-5.border.border-top-0.border-left-0.d-flex.align-items-center.justify-content-between
       = word.japanese 
-      span.d-inlile-block.float-right
+      span
           = link_to "", edit_list_word_path(list, word), remote: true, class: "far fa-edit text-light"

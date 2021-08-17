@@ -18,5 +18,7 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    stdin_open: true
+    tty: true
 volumes:
   bundle: #bundle installした後buildし直さなくてよくなる

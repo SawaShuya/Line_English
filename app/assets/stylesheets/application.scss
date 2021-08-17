@@ -26,8 +26,8 @@
  }
 
  header {
-  .nav-link {
-    color: #808080;
+  .navbar-light .navbar-toggler {
+    border-color: rgba(0,0,0,0);
   }
 }
  .lists {
@@ -100,7 +100,10 @@
 
  .word {
    min-height: 45px;
-   line-height: 45px;
+ }
+
+ .edit-word-form {
+    line-height: 45px;
  }
 
  @media screen and (max-width: 425px) {

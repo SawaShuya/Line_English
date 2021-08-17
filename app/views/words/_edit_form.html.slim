@@ -1,15 +1,15 @@
 = form_with model: [list, word], remote: true, class: "edit-word-form d-block w-100 align-items-center" do |f|
-  .container
-    .row
-      .col-2.border.border-top-0.border-right-0
+  .container.h-100
+    .row.h-100
+      .col-2.border.border-top-0.border-right-0.d-flex.align-items-center.justify-content-center
         = f.button :type => "submit", class: 'submit-link mr-2' do
           i.fas.fa-check
         = link_to "", list_path(list), class: "text-danger fas fa-times text-decoration-none mr-2 back-link"
         = link_to "", list_word_path(list, word), method: :delete, remote: true, class: "far fa-trash-alt text-danger"
 
-      .col-5.border.border-top-0
+      .col-5.border.border-top-0.d-flex.align-items-center
         = f.text_field :english, class: "form-control h-100"
 
-      .col-5.border.border-top-0.border-left-0
+      .col-5.border.border-top-0.border-left-0.d-flex.align-items-center
         = f.text_field :japanese, class: "form-control h-100"
     
