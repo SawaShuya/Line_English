@@ -13,23 +13,27 @@ html
     header
       nav.navbar.navbar-expand-lg.navbar-light.bg-light
         .container
-          = link_to "えいごろう", lists_path, class: "navbar-brand"
-          buttun.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation"
-            span.navbar-toggler-icon
-              span
-              span 
-              span
-          
-          .navbar-collapse.collapse#navbarNavDropdown
+          - if user_signed_in?
+            = link_to "えいごろう", lists_path, class: "navbar-brand"
+
+            buttun.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation"
+              span.navbar-toggler-icon
+                span
+                span 
+                span
+            
+            .navbar-collapse.collapse#navbarNavDropdown
+              ul.navbar-nav.ml-auto
+                - if user_signed_in?
+                  li.nav-item
+                    = link_to " Myリスト" , lists_path, class: "nav-link fas fa-list"
+                  li.nav-item
+                    = link_to " 設定", app_config_path, class: "nav-link fas fa-cog"
+          - else
+            = link_to "えいごろう", root_path, class: "navbar-brand"
             ul.navbar-nav.ml-auto
-              - if user_signed_in?
-                li.nav-item
-                  = link_to " Myリスト" , lists_path, class: "nav-link fas fa-list"
-                li.nav-item
-                  = link_to " 設定", app_config_path, class: "nav-link fas fa-cog"
-              - else
-                li
-                  = link_to " Log in", new_user_session_path, class: 'nav-link fas fa-user'
+              li
+                = link_to " Log in", new_user_session_path, class: 'nav-link fas fa-user'
 
     main
       .container

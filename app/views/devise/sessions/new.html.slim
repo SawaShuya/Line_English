@@ -1,18 +1,17 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.log-in.card.shadow-sm
+  h4.card-title.text-center
+    | ログインはこちらから
+  .card-body
+    .actions.card-body.m-auto
+      = link_to user_line_omniauth_authorize_path, method: :post, class: "text-decoration-none d-block" do
+        .line-btn.d-flex.rounded-lg.align-items-center
+          .line-icon
+            = image_tag('btn_base', class: "btn-base")
+            = image_tag('btn_hover', class: "btn-hover")
+            = image_tag('btn_press', class: "btn-press")
+          .btn-text.flex-fill
+            .text-center.text-white.font-weight-bold
+              | Lineでログイン
+
+
+
