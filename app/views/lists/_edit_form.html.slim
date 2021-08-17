@@ -6,5 +6,5 @@
     = f.button :type => "submit", class: "submit-link mr-3" do
       i.fas.fa-check.submit-link-item
     = link_to "", lists_path, class: "back-link fas fa-times text-danger text-decoration-none mr-3"
-    = link_to "", list_path(list), method: :delete, remote: true, class: "text-danger text-decoration-none far fa-trash-alt", data:{confirm: "「#{list.title}」に登録した情報がすべて削除されます削除してよろしいですか？"}
+    = link_to "", list_path(list), method: :delete, remote: true, class: "text-danger text-decoration-none far fa-trash-alt", data:{confirm: "「#{list.title}」に登録した情報がすべて削除されます。\n削除してよろしいですか？"}
     

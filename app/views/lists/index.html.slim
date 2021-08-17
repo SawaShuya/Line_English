@@ -21,7 +21,7 @@
               i.fas.fa-ellipsis-h
           .dropdown-menu
             = link_to "編集", edit_list_path(list), remote: true, class: "dropdown-item text-decoration-none"
-            = link_to "削除", list_path(list), method: :delete, remote: true, class: "text-danger text-decoration-none dropdown-item", data:{confirm: "「#{list.title}」に登録した情報がすべて削除されます削除してよろしいですか？"}
+            = link_to "削除", list_path(list), method: :delete, remote: true, class: "text-danger text-decoration-none dropdown-item", data:{confirm: "「#{list.title}」に登録した情報がすべて削除されます。\n削除してよろしいですか？"}
   - else
     p 
     | リストがありません

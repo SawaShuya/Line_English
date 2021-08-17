@@ -44,3 +44,27 @@ $(document).on('turbolinks:load', function() {
     });
   });
 });
+
+$(document).on('turbolinks:load', function() {
+  $(function(){
+    $('.user_config_form').change(function(){
+      var question_list_id = $("#user_question_list_id").val();
+      var question_limit = $("#user_question_limit").val();
+      var is_remember_word_question = $('input[name="is_remember_word_question"]:checked').val();
+      var is_question = $('input[name="is_question"]:checked').val();
+      $.ajax({ //ajax通信
+        url: '/users/config', 
+        type: 'PATCH',
+        data: {
+          user: {
+            question_list_id: question_list_id,
+            question_limit: question_limit,
+            is_remember_word_question: is_remember_word_question,
+            is_question: is_question
+          }
+        },
+        dataType: 'json' //データはjson形式
+      });
+    });
+  });
+});

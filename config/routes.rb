@@ -15,6 +15,6 @@ Rails.application.routes.draw do
   resource :word_tests, only: [:index]
   get "word_test/result" => "word_tests#result", as: "test_result"
 
-  resources :users, only: [:update]
   get "users/config" => "users#app_config", as: "app_config"
+  patch "users/config" => "users#update", as: "user"
 end
