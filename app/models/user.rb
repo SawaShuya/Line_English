@@ -92,25 +92,27 @@ class User < ApplicationRecord
   end
 
   def send_question
-    question = self.questions.where(is_sent: false).first
-    question_num = self.questions.where(is_sent: true).count + 1
-    word_dictionaries = WordDictionary.all.sample(3)
-    response = "No. " + question_num.to_s + "  " + question.word.english
-    if question_num == 1
-      response = "テストを始めるよ！数字を答えてね！\nやめたい時は「やめる」と打ち込んでね\n" + response
-    end
-    
-    j = 0
-    for i in 1..4 do
-      if i == question.answer
-        response = response + "\n" + i.to_s + ". " + question.word.japanese
-      else
-        response = response + "\n" + i.to_s + ". " + word_dictionaries[j].japanese
-        j += 1
+    if self.questions.where(is_sent: false).exists?
+      question = self.questions.where(is_sent: false).first
+      question_num = self.questions.where(is_sent: true).count + 1
+      word_dictionaries = WordDictionary.all.sample(3)
+      response = "No. " + question_num.to_s + "  " + question.word.english
+      if question_num == 1
+        response = "テストを始めるよ！数字を答えてね！\nやめたい時は「やめる」と打ち込んでね\n" + response
       end
+      
+      j = 0
+      for i in 1..4 do
+        if i == question.answer
+          response = response + "\n" + i.to_s + ". " + question.word.japanese
+        else
+          response = response + "\n" + i.to_s + ". " + word_dictionaries[j].japanese
+          j += 1
+        end
+      end
+      
+      question.update(is_sent: true)
+      return response
     end
-    
-    question.update(is_sent: true)
-    return response
   end
 end
