@@ -47,8 +47,11 @@ class LinebotController < ApplicationController
             if user.question_list_id.present?
               user.set_questions
               response = user.send_question
+              if response.blank?
+                response = "テストできる項目が見つかりません..\n設定画面から確認してね！\nhttps://eigoro.herokuapp.com/"
+              end
             else
-              response = "設定からリストを選択してね！"
+              response = "設定からリストを選択してね！\nhttps://eigoro.herokuapp.com/"
             end
 
           elsif user_message == "やめる"
