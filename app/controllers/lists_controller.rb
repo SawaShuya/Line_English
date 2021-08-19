@@ -14,7 +14,7 @@ class ListsController < ApplicationController
     @list = current_user.lists.new(list_params)
     @list.save
     if current_user.question_list_id.nil?
-      current_user.question_list_id = @list.id
+      current_user.update(question_list_id: @list.id)
     end
   end
 

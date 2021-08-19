@@ -97,7 +97,7 @@ class User < ApplicationRecord
     word_dictionaries = WordDictionary.all.sample(3)
     response = "No. " + question_num.to_s + "  " + question.word.english
     if question_num == 1
-      response = "テストを始めるよ！\n数字を答えてね！\n" + response
+      response = "テストを始めるよ！数字を答えてね！\nやめたい時は「やめる」と打ち込んでね\n" + response
     end
     
     j = 0

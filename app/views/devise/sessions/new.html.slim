@@ -2,6 +2,18 @@
   h4.card-title.text-center
     | ログインはこちらから
   .card-body
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .field.mt-4
+        = f.label :email
+        br
+        = f.email_field :email, autofocus: true, autocomplete: "email"
+      .field.mt-4
+        = f.label :password
+        br
+        = f.password_field :password, autocomplete: "current-password"
+      .action 
+        = f.submit "ログイン", class: "btn btn-outline-secondary"
+
     .actions.card-body.m-auto
       = link_to user_line_omniauth_authorize_path, method: :post, class: "text-decoration-none d-block" do
         .line-btn.d-flex.rounded-lg.align-items-center
@@ -12,6 +24,6 @@
           .btn-text.flex-fill
             .text-center.text-white.font-weight-bold
               | Lineでログイン
-
+      
 
 
